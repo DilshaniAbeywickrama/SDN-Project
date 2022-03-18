@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title_name %} Flow deleted {% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h1 style="color:red;">Successfully deleted the flow entry</h1>
+
+    <ol><p>
+        {% for name in details %}
+        <li>{{name}}</li>
+        {% endfor %}
+        </p></ol>
+</div>
+{% endblock %}

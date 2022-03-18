@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title_name %} Add flow {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 style="color:blue;">Add New Flow</h1>
+    {% if error_statement %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{error_statement}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <br/>
+
+    <form action="{{ url_for('add_flow_show') }}" method="POST" form style="margin: auto; width: 360px;">
+
+        <div class="mb-3">
+            <label class="form-label" style="color:red;"><b>Switch</b></label>
+
+            <select class="form-select" aria-label="Default select example" name="switch">
+                <option value="0">Select the switch</option>
+                {% for sw in switch_data %}
+                {% if sw==switch %}
+                <option selected value={{sw}}>{{sw}}</option>
+                {% else %}
+                <option value={{sw}}>{{sw}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <!--<div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Source IP address</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                   placeholder="IP address of source host" name="ip_address_sr" value={{ip_address_sr}}>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Destination IP address</label>
+            <input type="text" class="form-control" id="exampleInputEmail1.1" aria-describedby="emailHelp"
+                   placeholder="IP address of destination host" name="ip_address_ds" value={{ip_address_ds}}>
+        </div> -->
+
+        <div class="mb-3">
+            <label for="mac_address" class="form-label" style="color:red;"><b>Source MAC address</b></label>
+            <input type="text" class="form-control" id="mac_address" aria-describedby="emailHelp"
+                   placeholder="MAC address of source host" name="mac_address_sr" value={{mac_address_sr}}>
+        </div>
+
+        <div class="mb-3">
+            <label for="mac_address" class="form-label" style="color:red;"><b>Destination MAC address</b></label>
+            <input type="text" class="form-control" id="mac_address1" aria-describedby="emailHelp"
+                   placeholder="MAC address of destination host" name="mac_address_ds" value={{mac_address_ds}}>
+        </div>
+
+        <div class="mb-3">
+            <label for="priority" class="form-label" style="color:red;"><b>Priority</b></label>
+            <input type="number" class="form-control" id="priority" aria-describedby="emailHelp"
+                   placeholder="Priority level [1-99]" name="priority" value={{priority}}>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="color:red;"><b>Action</b></label>
+
+            <select class="form-select" aria-label="Default select example" name="action">
+                <option value="0">Select the action</option>
+                {% if action=="block" %}
+                <option value="block" selected>Block</option>
+                <option value="allow">Allow</option>
+                {% elif action=="allow" %}
+                <option value="block">Block</option>
+                <option value="allow" selected>Allow</option>
+                {% else %}
+                <option value="block">Block</option>
+                <option value="allow">Allow</option>
+                {% endif %}
+            </select>
+        </div>
+
+        <br/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<br/>
+{% endblock %}

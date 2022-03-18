@@ -1,0 +1,15 @@
+ {
+     "input": {
+         "node": "/opendaylight-inventory:nodes/opendaylight-inventory:node[opendaylight-inventory:id='openflow:1']",
+         "table_id": 0,
+         "priority":99,
+         "strict": true,
+         "match": {
+             "ethernet-match": {
+                 "ethernet-type": {
+                     "type": 2048
+                 }
+             }
+         }
+     }
+ }

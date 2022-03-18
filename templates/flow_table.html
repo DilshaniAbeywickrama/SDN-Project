@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title_name %} Flow table {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h1 style="color:blue;">Flow Table</h1>
+    <p style="color:red;">Number of switches: {{num_switches}}</p>
+
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Switch</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Packet Count</th>
+            <th scope="col">Byte Count</th>
+            <th scope="col">Source MAC address</th>
+            <th scope="col">Destination MAC address</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for name in flow_table %}
+            {% if name[6]=="Allow" %}
+            <tr>
+                <td class="table-primary">{{name[0]}}</td>
+                <td>{{name[1]}}</td>
+                <td>{{name[2]}}</td>
+                <td>{{name[3]}}</td>
+                <td>{{name[4]}}</td>
+                <td>{{name[5]}}</td>
+                <td>{{name[6]}}</td>
+            </tr>
+            {% else %}
+            <tr class="table-warning">
+                <td class="table-primary">{{name[0]}}</td>
+                <td>{{name[1]}}</td>
+                <td>{{name[2]}}</td>
+                <td>{{name[3]}}</td>
+                <td>{{name[4]}}</td>
+                <td>{{name[5]}}</td>
+                <td>{{name[6]}}</td>
+            </tr>
+            {% endif %}
+
+
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
